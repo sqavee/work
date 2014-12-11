@@ -1,0 +1,125 @@
+
+//
+// Load core variables and mixins
+// --------------------------------------------------
+
+@import "variables.less";
+@import "mixins.less";
+
+
+
+@btn-color:#fbb03b;
+@btn-color-green:#46BB3A;
+
+
+// Mixin for generating new styles
+.btn-styles(@btn-color: #555) {
+  #gradient > .vertical(@start-color: @btn-color; @end-color: darken(@btn-color, 12%));
+  .reset-filter(); // Disable gradients for IE9 because filter bleeds through rounded corners
+  background-repeat: repeat-x;
+  border-color: darken(@btn-color, 14%);
+
+  &:hover,
+  &:focus  {
+    background-color: darken(@btn-color, 12%);
+    background-position: 0 -15px;
+  }
+
+  &:active,
+  &.active {
+    background-color: darken(@btn-color, 12%);
+    border-color: darken(@btn-color, 14%);
+  }
+
+  &:disabled,
+  &[disabled] {
+    background-color: darken(@btn-color, 12%);
+    background-image: none;
+  }
+}
+
+// Common styles
+.btn {
+  // Remove the gradient for the pressed/active state
+  &:active,
+  &.active {
+    background-image: none;
+  }
+}
+
+
+.btn-testdrive {
+    #gradient > .vertical(@start-color: @btn-color; @end-color: darken(@btn-color, 12%));
+    padding:1.2em 2em 1em 150px;
+    border-radius: 20px;
+    font-size:2em;
+
+    color:lighten(@btn-color,40%);
+    border-color: darken(@btn-color, 30%);
+    transition:0.2s;
+
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+    @shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+    .box-shadow(@shadow);
+    i{
+      font-size:1.3em
+    }
+    em {
+        font-style: normal;
+        color:darken(@btn-color-green,10%);
+        font-weight: 400;
+    }
+
+
+    img {
+        position:absolute; margin-left:-120px; margin-top:-20px
+    }
+
+
+}
+
+.smaller {
+    font-size:1.6em;
+    padding:1.4em 2em 1.2em 150px;
+}
+.btn-testdrive:hover, .btn-testdrive:active , .btn-testdrive.active{
+    #gradient > .vertical(@start-color: darken(@btn-color, 12%); @end-color: darken(@btn-color, 0%));
+    color:darken(@btn-color-green,10%);
+    text-decoration: none;
+    transition:0.2s;
+}
+
+
+.btn-submit{ 
+
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+  @shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+  .box-shadow(@shadow);
+
+  // Reset the shadow
+  &:active,
+  &.active {
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  }
+
+    .btn-styles(@btn-color); 
+
+}
+
+.form-box {
+    #gradient > .vertical(@start-color: #fbb03b; @end-color: #ffef9b);
+    padding:20px;
+    border-radius: 20px;
+    border: solid 2px @btn-color;
+
+    h3{
+        color:darken(@btn-color,50%);
+        font-size:2.1em;
+        line-height: 1.3em;
+        text-align:right
+    }
+    em {
+        font-style: normal;
+        color:lighten(@btn-color,30%);
+    }
+}
